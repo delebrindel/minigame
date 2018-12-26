@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Monster</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+    <style>
+        .healthbar{
+            background: #c0c0c0;
+            height: 40px;
+            width: 80%;
+            margin: 0 auto;
+        }
+        .healthbar--inner{
+            background: #118625;
+            height: 40px;
+            color: #fff;
+            text-align: center;
+            transition: width 500ms;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app" style='margin-top:2em'>
+        <div class="columns">
+            <div class="column is-1-2 has-text-centered ">
+                <h1 class='title'>Player</h1>
+                <div class="healthbar">
+                    <div class="healthbar--inner" :style="{width: playerHealth+'%'}">
+                        {{playerHealth}}
+                    </div>
+                </div>
+            </div>
+            <div class="column is-1-2 has-text-centered ">
+                <h1 class='title'>Monster</h1>
+                <div class="healthbar">
+                    <div class="healthbar--inner" :style="{width: monsterHealth+'%'}">
+                        {{monsterHealth}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="columns" v-if='!gameIsRunning'>
+            <div class="column is-full has-text-centered">
+                <a class="button is-dark" @click='startGame'>Start a new game</a>
+            </div>
+        </div>
+        <div class="columns" v-else>
+            <div class="column is-full has-text-centered">
+                <a class="button is-info" @click="normalAttack">Normal attack</a>
+                <a class="button is-danger" @click="specialAttack">Special attack</a>
+                <a class="button is-primary" @click="selfHeal">Heal</a>
+                <a class="button is-warning" @click="escape">Give up</a>
+            </div>
+        </div>
+        <div class="container">
+        </div>
+    </div>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
