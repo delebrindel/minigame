@@ -3,12 +3,17 @@
 }
 .healthbar{
     background: #c0c0c0;
-    height: 40px;
-    width: 80%;
+    height: 25px;
+    width: 40%;
+    border-radius: 5px;
+    border: #000 2px solid;
     margin: 0 auto;
 }
 .healthbar--inner{
-    height: 40px;
+    border-radius: 5px;
+    height: 21px;
+    font-weight: bold;
+    line-height: 21px;
     color: #fff;
     text-align: center;
     transition: width 500ms;
