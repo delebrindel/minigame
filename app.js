@@ -67,6 +67,7 @@ new Vue({
         },
         escape: function (){
             this.gameIsRunning=false;
+            this.animate("player","surrender");
         },
         animate(objective,type){
             stopAnimate();
