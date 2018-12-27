@@ -20,6 +20,14 @@
             text-align: center;
             transition: width 500ms;
         }
+        .player-turn{
+            background: #2239dd;
+            color: #fff;
+        }
+        .monster-turn{
+            background: #dd3922;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -55,7 +63,11 @@
                 <a class="button is-warning" @click="escape">Give up</a>
             </div>
         </div>
-        <div class="container">
+        <div class="container has-text-centered" v-if="combatLog.length>0">
+            <h1 class='title'>Combat log</h1>
+            <ul>
+                <li :class="{'player-turn': turn.isPlayer, 'monster-turn': !turn.isPlayer}" v-for="turn in combatLog">{{turn.text}}</li>
+            </ul>
         </div>
     </div>
     <script src="https://vuejs.org/js/vue.js"></script>

@@ -6,42 +6,60 @@ new Vue({
         gameIsRunning: false,
         maxPlayerDamage: 10,
         minPlayerDamage: 3,
-        maxMonsterDamage: 11,
-        minMonsterDamage: 1,
-        combatLog: new Array
+        maxMonsterDamage: 13,
+        minMonsterDamage: 4,
+        combatLog: []
     },
     methods: {
         startGame: function(){
             this.gameIsRunning=true;
             this.monsterHealth=100;
             this.playerHealth=100;
-            this.combatLog
+            this.combatLog=[]
         },
         normalAttack: function (){
-            this.monsterHealth-= this.calculateDamage(this.minPlayerDamage, this.maxPlayerDamage);
+            var damage=this.calculateDamage(this.minPlayerDamage, this.maxPlayerDamage);
+            this.monsterHealth-= damage;
+            this.logTurn(true, "Player hits monster dealing "+damage+" damage");
             if(this.checkWin()){
                 return;
             }
-            this.playerHealth-= this.calculateDamage(this.minMonsterDamage, this.maxMonsterDamage);
+            this.monsterAttacks();
+        },
+        monsterAttacks: function(){
+            var damage=this.calculateDamage(this.minMonsterDamage, this.maxMonsterDamage);
+            this.playerHealth-=damage; 
+            this.logTurn(false, "Monster hits player dealing "+damage+" damage");
             this.checkWin();
         },
+        logTurn: function(isPlayer, text){
+            this.combatLog.unshift({
+                isPlayer: isPlayer,
+                text: text
+            })
+        },
         specialAttack: function (){
-            this.monsterHealth-= this.calculateDamage(this.minPlayerDamage, this.maxPlayerDamage)*2;
+            var damage=this.calculateDamage(this.minPlayerDamage+1, this.maxPlayerDamage+2)*2;
+            this.monsterHealth-= damage;
             if(this.checkWin()){
                 return;
             }
-            this.playerHealth-=5;
-            this.playerHealth-= this.calculateDamage(this.minMonsterDamage, this.maxMonsterDamage);
-            this.checkWin();
+            this.logTurn(true, "Player uses a special attack on the monster dealing "+damage+" damage");
+            this.logTurn(true, "Player is exhausted, receives 5 damage");
+            this.playerHealth-= 5;
+            this.monsterAttacks();
         },
         selfHeal: function (){
             if(this.playerHealth<=90){
                 this.playerHealth+=10;
+                this.logTurn(true, "Player uses heal, recovering 10 damage");
             }
             else{
+                var restored=100-this.playerHealth;
+                this.logTurn(true, "Player uses heal, recovering "+restored+" damage")
                 this.playerHealth=100;
             }
-            this.playerHealth-= this.calculateDamage(this.minMonsterDamage, this.maxMonsterDamage);
+            this.monsterAttacks();
         },
         escape: function (){
             this.gameIsRunning=false;
