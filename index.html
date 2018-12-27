@@ -6,42 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Monster</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
-    <style>
-        .healthbar{
-            background: #c0c0c0;
-            height: 40px;
-            width: 80%;
-            margin: 0 auto;
-        }
-        .healthbar--inner{
-            background: #118625;
-            height: 40px;
-            color: #fff;
-            text-align: center;
-            transition: width 500ms;
-        }
-        .player-turn{
-            background: #2239dd;
-            color: #fff;
-            margin-bottom:.25em;
-            font-weight: bold;
-        }
-        .monster-turn{
-            background: hsl(348, 100%, 61%);
-            color: #fff;
-            font-weight: bold;
-            margin-bottom:.25em;
-        }
-    </style>
+    <link rel="stylesheet" href="app.css">
 </head>
 <body>
     <div class="container has-text-centered" id="app" style='margin-top:2em'>
         <h1 class='title has-text-link'>Monster combat</h1>
         <div class="columns">
             <div class="column is-1-2 has-text-centered ">
-                <h1 class='subtitle has-text-primary'>Player</h1>
+                <h1 class='subtitle has-text-success'>Player</h1>
                 <div class="healthbar">
-                    <div class="healthbar--inner" :style="{width: playerHealth+'%'}">
+                    <div class="healthbar--inner has-background-success" :style="{width: playerHealth+'%'}">
                         {{playerHealth}}
                     </div>
                 </div>
@@ -49,7 +23,7 @@
             <div class="column is-1-2 has-text-centered ">
                 <h1 class='subtitle has-text-danger'>Monster</h1>
                 <div class="healthbar">
-                    <div class="healthbar--inner" :style="{width: monsterHealth+'%'}">
+                    <div class="healthbar--inner has-background-danger" :style="{width: monsterHealth+'%'}">
                         {{monsterHealth}}
                     </div>
                 </div>
