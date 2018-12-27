@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Monster</title>
+    <title>Monster combat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
     <link rel="stylesheet" href="app.css">
 </head>
@@ -14,6 +14,9 @@
         <div class="columns">
             <div class="column is-1-2 has-text-centered ">
                 <h1 class='subtitle has-text-success'>Player</h1>
+                <div class="sprite-container">
+                    <div id="player--sprite" class='idle' onmouseout="stopAnimate()"></div>
+                </div>
                 <div class="healthbar">
                     <div class="healthbar--inner has-background-success" :style="{width: playerHealth+'%'}">
                         {{playerHealth}}
@@ -52,7 +55,14 @@
             </div>
         </div>
     </div>
+    <footer class='footer has-text-centered'>
+        <div class="content">
+            Sprites by<br>    
+            <a href="http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/">Universal LPC Sprite Sheet Character Generator - Gaurav Munjal</a>
+        </div>
+    </footer>
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="app.js"></script>
+    <script src="animation.js"></script>
 </body>
 </html>

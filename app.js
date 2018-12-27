@@ -15,9 +15,11 @@ new Vue({
             this.gameIsRunning=true;
             this.monsterHealth=100;
             this.playerHealth=100;
-            this.combatLog=[]
+            this.combatLog=[],
+            this.animate("player","idle");
         },
         normalAttack: function (){
+            this.animate("player","attack");
             var damage=this.calculateDamage(this.minPlayerDamage, this.maxPlayerDamage);
             this.monsterHealth-= damage;
             this.logTurn(true, "Player hits monster dealing "+damage+" damage");
@@ -39,6 +41,7 @@ new Vue({
             })
         },
         specialAttack: function (){
+            this.animate("player","sattack");
             var damage=this.calculateDamage(this.minPlayerDamage+1, this.maxPlayerDamage+2)*2;
             this.monsterHealth-= damage;
             if(this.checkWin()){
@@ -50,6 +53,7 @@ new Vue({
             this.monsterAttacks();
         },
         selfHeal: function (){
+            this.animate("player","heal");
             if(this.playerHealth<=90){
                 this.playerHealth+=10;
                 this.logTurn(true, "Player uses heal, recovering 10 damage");
@@ -63,6 +67,11 @@ new Vue({
         },
         escape: function (){
             this.gameIsRunning=false;
+        },
+        animate(objective,type){
+            stopAnimate();
+            let key=(objective=="player"? "p" : "m")+type;
+            animatePlayer(key);
         },
         calculateDamage: function(min, max){
             return Math.max(Math.floor(Math.random() * max+1), min); 
