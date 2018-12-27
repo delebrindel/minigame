@@ -31,10 +31,11 @@
     </style>
 </head>
 <body>
-    <div class="container" id="app" style='margin-top:2em'>
+    <div class="container has-text-centered" id="app" style='margin-top:2em'>
+        <h1 class='title has-text-link'>Monster combat</h1>
         <div class="columns">
             <div class="column is-1-2 has-text-centered ">
-                <h1 class='title'>Player</h1>
+                <h1 class='subtitle has-text-primary'>Player</h1>
                 <div class="healthbar">
                     <div class="healthbar--inner" :style="{width: playerHealth+'%'}">
                         {{playerHealth}}
@@ -42,7 +43,7 @@
                 </div>
             </div>
             <div class="column is-1-2 has-text-centered ">
-                <h1 class='title'>Monster</h1>
+                <h1 class='subtitle has-text-danger'>Monster</h1>
                 <div class="healthbar">
                     <div class="healthbar--inner" :style="{width: monsterHealth+'%'}">
                         {{monsterHealth}}
