@@ -20,7 +20,7 @@
   height: 64px;
   width: 64px;
   margin: 0 auto;
-  background: url('../assets/sprites/player.png') 0px -704px;
+  background: url('assets/sprites/player.png') 0px -704px;
   text-align: center;
 }
 .player-turn{
