@@ -1,5 +1,5 @@
-var monster= new spriteAnimator("#monster--sprite","assets/sprites/player.png",21,13,64,1,1);
 var player= new spriteAnimator("#player--sprite","assets/sprites/player.png",21,13,64,3,1);
+var monster= new spriteAnimator("#monster--sprite","assets/sprites/monster.png",21,13,64,1,1);
 new Vue({
     el: '#app',
     data: {
@@ -32,7 +32,7 @@ new Vue({
             this.monsterAttacks();
         },
         monsterAttacks: function(){
-            monster.startAnimation('melee_left');
+            monster.startAnimation('thrust_left');
             var damage=this.calculateDamage(this.minMonsterDamage, this.maxMonsterDamage);
             this.playerHealth-=damage; 
             this.logTurn(false, "Monster hits player dealing "+damage+" damage");

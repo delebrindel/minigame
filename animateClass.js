@@ -5,8 +5,8 @@ const WALK_UP="walk_up";
 const WALK_DOWN="walk_down";
 const SPELLCAST_LEFT="spellcast_left";
 const SPELLCAST_RIGHT="spellcast_right";
-const MELEE_ATTACK_LEFT="melee_left";
-const MELEE_ATTACK_RIGHT="melee_right";
+const THRUST_LEFT="thrust_left";
+const THRUST_RIGHT="thrust_right";
 const RANGED_ATTACK_RIGHT="ranged_right";
 const RANGED_ATTACK_LEFT="ranged_left";
 const RANGED_ATTACK_UP="ranged_up";
@@ -75,11 +75,11 @@ class spriteAnimator{
                 vPosition = 19; 
                 hLimit=13;
                 break;
-            case MELEE_ATTACK_LEFT:
+            case THRUST_LEFT:
                 vPosition = 5; 
                 hLimit=7;
                 break;
-            case MELEE_ATTACK_RIGHT:
+            case THRUST_RIGHT:
                 vPosition = 7; 
                 hLimit=7;
                 break;
