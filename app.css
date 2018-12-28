@@ -28,6 +28,12 @@
   background: url('assets/sprites/player.png') 0px -704px;
   text-align: center;
 }
+#monster--sprite{
+    height: 64px;
+    width: 64px;
+    text-align: center;
+    margin: 0 auto;
+}
 .player-turn{
     background: #2239dd;
     color: #fff;
