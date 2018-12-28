@@ -19,13 +19,15 @@
                 <div class="sprite-container">
                     <div id="player--sprite"></div>
                 </div>
+                <h5 class='is-size-7'>Health</h5>
                 <div class="healthbar">
-                    <div class="healthbar--inner has-background-success" :style="{width: playerHealth+'%'}">
+                    <div class="healthbar--inner is-size-7 has-background-success" :style="{width: playerHealth+'%'}">
                         {{playerHealth}}
                     </div>
                 </div>
+                <h5 class="is-size-7">Rage</h5>
                 <div class="ragebar">
-                    <div class="healthbar--inner has-background-warning" :style="{width: playerRage+'%'}">
+                    <div class="ragebar--inner is-size-7 has-background-warning" :style="{width: playerRage+'%'}">
                         {{playerRage}}
                     </div>
                 </div>
@@ -35,8 +37,9 @@
                 <div class="sprite-container">
                     <div id="monster--sprite"></div>
                 </div>
+                <h5 class='is-size-7'>Health</h5>
                 <div class="healthbar">
-                    <div class="healthbar--inner has-background-danger" :style="{width: monsterHealth+'%'}">
+                    <div class="healthbar--inner is-size-7 has-background-danger" :style="{width: monsterHealth+'%'}">
                         {{monsterHealth}}
                     </div>
                 </div>
@@ -55,7 +58,7 @@
                     <a class="button is-fullwidth is-info" @click="normalAttack">Normal attack</a>
                 </div>
                 <div class="column is-half-mobile is-one-fourth-desktop">
-                    <a class="button is-fullwidth is-danger" @click="specialAttack">Special attack</a>
+                    <a class="button is-fullwidth is-danger" :disabled="playerRage < 100" @click="specialAttack">Special attack</a>
                 </div>
                 <div class="column is-half-mobile is-one-fourth-desktop">
                     <a class="button is-fullwidth is-primary" @click="selfHeal">Heal</a>

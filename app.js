@@ -19,6 +19,7 @@ new Vue({
             this.gameIsRunning=true;
             this.monsterHealth=100;
             this.playerHealth=100;
+            this.playerRage=0;
             this.combatLog=[];
             this.message="Choose an action";
             monster.startAnimation('walk_left');
@@ -37,6 +38,12 @@ new Vue({
         monsterAttacks: function(){
             monster.startAnimation('thrust_left');
             var damage=this.calculateDamage(this.minMonsterDamage, this.maxMonsterDamage);
+            if(this.playerRage+damage*2>100){
+                this.playerRage=100;
+            }
+            else{
+                this.playerRage+=damage*2;
+            }
             this.playerHealth-=damage; 
             this.logTurn(false, "Monster hits player dealing "+damage+" damage");
             this.checkWin();
@@ -48,16 +55,17 @@ new Vue({
             })
         },
         specialAttack: function (){
-            player.startAnimation('ranged_down');
-            var damage=this.calculateDamage(this.minPlayerDamage+1, this.maxPlayerDamage+2)*2;
-            this.monsterHealth-= damage;
-            if(this.checkWin()){
-                return;
+            if(this.playerRage>=100){
+                player.startAnimation('ranged_down');
+                var damage=Math.floor(this.calculateDamage(this.minPlayerDamage+4, this.maxPlayerDamage+5)*2.75);
+                this.monsterHealth-= damage;
+                if(this.checkWin()){
+                    return;
+                }
+                this.logTurn(true, "Player uses a special attack on the monster dealing "+damage+" damage");
+                this.playerRage=0;
+                this.monsterAttacks();
             }
-            this.logTurn(true, "Player uses a special attack on the monster dealing "+damage+" damage");
-            this.logTurn(true, "Player is exhausted, receives 5 damage");
-            this.playerHealth-= 5;
-            this.monsterAttacks();
         },
         selfHeal: function (){
             player.startAnimation('spellcast_right');
@@ -81,6 +89,9 @@ new Vue({
             return Math.max(Math.floor(Math.random() * max+1), min); 
         },
         checkWin: function(){
+            if(this.playerRage==100){
+                this.message="Your special attack is ready!";
+            }
             if(this.playerHealth <= 0){
                 player.startAnimation('fall');
                 monster.startAnimation('idle');
