@@ -9,6 +9,8 @@ new Vue({
         gameIsRunning: false,
         maxPlayerDamage: 10,
         minPlayerDamage: 3,
+        minPlayerHeal: 8,
+        maxPlayerHeal: 14,
         maxMonsterDamage: 13,
         minMonsterDamage: 4,
         combatLog: [],
@@ -57,7 +59,7 @@ new Vue({
         specialAttack: function (){
             if(this.playerRage>=100){
                 player.startAnimation('ranged_down');
-                var damage=Math.floor(this.calculateDamage(this.minPlayerDamage+4, this.maxPlayerDamage+5)*2.75);
+                var damage=Math.floor(this.calculateDamage(this.minPlayerDamage+3, this.maxPlayerDamage+4)*2.5);
                 this.monsterHealth-= damage;
                 if(this.checkWin()){
                     return;
@@ -69,9 +71,10 @@ new Vue({
         },
         selfHeal: function (){
             player.startAnimation('spellcast_right');
-            if(this.playerHealth<=90){
-                this.playerHealth+=10;
-                this.logTurn(true, "Player uses heal, recovering 10 damage");
+            var damage=this.calculateDamage(this.minPlayerHeal, this.maxPlayerHeal);
+            if(this.playerHealth+damage<100){
+                this.playerHealth+=damage;
+                this.logTurn(true, "Player uses heal, recovering "+damage+" damage");
             }
             else{
                 var restored=100-this.playerHealth;
