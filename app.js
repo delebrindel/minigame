@@ -30,7 +30,12 @@ new Vue({
         normalAttack: function (){
             player.startAnimation('ranged_right');
             var damage=this.calculateDamage(this.minPlayerDamage, this.maxPlayerDamage);
-            this.monsterHealth-= damage;
+            if(this.monsterHealth-damage<0){
+                this.monsterHealth=0; 
+            }
+            else{
+                this.monsterHealth-=damage; 
+            }
             this.logTurn(true, "Player hits monster dealing "+damage+" damage");
             if(this.checkWin()){
                 return;
@@ -46,7 +51,12 @@ new Vue({
             else{
                 this.playerRage+=damage*2;
             }
-            this.playerHealth-=damage; 
+            if(this.playerHealth-damage<0){
+                this.playerHealth=0; 
+            }
+            else{
+                this.playerHealth-=damage; 
+            }
             this.logTurn(false, "Monster hits player dealing "+damage+" damage");
             this.checkWin();
         },
@@ -60,7 +70,12 @@ new Vue({
             if(this.playerRage>=100){
                 player.startAnimation('ranged_down');
                 var damage=Math.floor(this.calculateDamage(this.minPlayerDamage+3, this.maxPlayerDamage+4)*2.5);
-                this.monsterHealth-= damage;
+                if(this.monsterHealth-damage<0){
+                    this.monsterHealth=0; 
+                }
+                else{
+                    this.monsterHealth-=damage; 
+                }
                 if(this.checkWin()){
                     return;
                 }
