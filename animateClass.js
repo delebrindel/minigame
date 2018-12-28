@@ -106,7 +106,7 @@ class spriteAnimator{
             }
             else{
                 if(repeat==false||type==FALL_DOWN){
-                    stopAnimate();
+                    this.stopAnimate();
                 }
                 else{
                     hPosition = 0;

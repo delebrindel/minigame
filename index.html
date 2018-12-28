@@ -11,8 +11,8 @@
 <body>
     <div class="container has-text-centered" id="app" style='margin-top:2em'>
         <h1 class='title has-text-link'>Monster combat</h1>
-        <div class="columns">
-            <div class="column is-1-2 has-text-centered ">
+        <div class="columns is-mobile">
+            <div class="column is-1-2  has-text-centered ">
                 <h1 class='subtitle has-text-success'>Player</h1>
                 <div class="sprite-container">
                     <div id="player--sprite"></div>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="column is-1-2 has-text-centered ">
+            <div class="column is-1-2has-text-centered ">
                 <h1 class='subtitle has-text-danger'>Monster</h1>
                 <div class="sprite-container">
                     <div id="monster--sprite"></div>
@@ -40,24 +40,33 @@
                 <a class="button is-dark" @click='startGame'>Start a new game</a>
             </div>
         </div>
-        <div class="columns" v-else>
-            <div class="column is-full has-text-centered">
-                <a class="button is-info" @click="normalAttack">Normal attack</a>
-                <a class="button is-danger" @click="specialAttack">Special attack</a>
-                <a class="button is-primary" @click="selfHeal">Heal</a>
-                <a class="button is-warning" @click="escape">Give up</a>
+        <div class="container" v-else>
+            <div class="columns has-text-centered">
+                <div class="column is-one-fourth">
+                    <a class="button is-fullwidth is-info" @click="normalAttack">Normal attack</a>
+                </div>
+                <div class="column is-one-fourth">
+                    <a class="button is-fullwidth is-danger" @click="specialAttack">Special attack</a>
+                </div>
+                <div class="column is-one-fourth">
+                    <a class="button is-fullwidth is-primary" @click="selfHeal">Heal</a>
+                </div>
+                <div class="column is-one-fourth">
+                    <a class="button is-fullwidth is-warning" @click="escape">Give up</a>
+                </div>
             </div>
-        </div>
-        <div class="container has-text-centered columns" v-if="combatLog.length>0">
-            <div class="column is-8 is-offset-2">
-
-                <h1 class='title'>Combat log</h1>
-                <ul>
-                    <li :class="{'player-turn': turn.isPlayer, 'monster-turn': !turn.isPlayer}" v-for="turn in combatLog">{{turn.text}}</li>
-                </ul>
+            <div class="container has-text-centered columns" v-if="combatLog.length>0">
+                <div class="column is-8 is-offset-2">
+                    
+                    <h1 class='title'>Combat log</h1>
+                    <ul>
+                        <li :class="{'player-turn': turn.isPlayer, 'monster-turn': !turn.isPlayer}" v-for="turn in combatLog">{{turn.text}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+    
     <footer class='footer has-text-centered'>
         <div class="content">
             Sprites by:<br>    

@@ -5,9 +5,15 @@
     background: #c0c0c0;
     height: 25px;
     width: 40%;
-    border-radius: 5px;
-    border: #000 2px solid;
-    margin: 0 auto;
+
+border-radius: 5px;
+border: #000 2px solid;
+margin: 0 auto;
+}
+@media only screen and (max-width: 480px) {
+    .healthbar{
+        width:90%;
+    }
 }
 .healthbar--inner{
     border-radius: 5px;
