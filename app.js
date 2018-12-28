@@ -95,6 +95,9 @@ new Vue({
             if(this.playerRage==100){
                 this.message="Your special attack is ready!";
             }
+            else{
+                this.message="Choose an action";
+            }
             if(this.playerHealth <= 0){
                 player.startAnimation('fall');
                 monster.startAnimation('idle');
