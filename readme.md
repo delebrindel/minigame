@@ -3,8 +3,9 @@
 Hi!
 This is a repo that I'm doing to test VueJS and some JS modularity.
 
-Currently a WIP, feel free to suggest any additions or ideas.
+You can check it out [here]: (https://delebrindel.github.io/minigame/)
 
+Currently a WIP, feel free to suggest any additions or ideas.
 [@delebrindel](https://twitter.com/Delebrindel)
 
 
