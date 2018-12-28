@@ -12,7 +12,7 @@ new Vue({
         minPlayerHeal: 8,
         maxPlayerHeal: 14,
         maxMonsterDamage: 13,
-        minMonsterDamage: 5,
+        minMonsterDamage: 6,
         combatLog: [],
         message:"Click to start a new game"
     },
