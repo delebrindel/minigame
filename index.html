@@ -37,10 +37,12 @@
         </div>
         <div class="columns" v-if='!gameIsRunning'>
             <div class="column is-full has-text-centered">
+                <h4 class='subtitle' v-text="message"></h4>
                 <a class="button is-dark" @click='startGame'>Start a new game</a>
             </div>
         </div>
         <div class="container" v-else>
+                <h4 class='subtitle' v-text="message"></h4>
             <div class="columns is-mobile is-multiline has-text-centered">
                 <div class="column is-half-mobile is-one-fourth-desktop">
                     <a class="button is-fullwidth is-info" @click="normalAttack">Normal attack</a>
@@ -57,7 +59,6 @@
             </div>
             <div class="container has-text-centered columns" v-if="combatLog.length>0">
                 <div class="column is-8 is-offset-2">
-                    
                     <h1 class='title'>Combat log</h1>
                     <ul>
                         <li :class="{'player-turn': turn.isPlayer, 'monster-turn': !turn.isPlayer}" v-for="turn in combatLog">{{turn.text}}</li>

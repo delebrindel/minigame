@@ -1,5 +1,5 @@
 var player= new spriteAnimator("#player--sprite","assets/sprites/player.png",21,13,64,3,1);
-var monster= new spriteAnimator("#monster--sprite","assets/sprites/monster.png",21,13,64,1,1);
+var monster= new spriteAnimator("#monster--sprite","assets/sprites/monster.png",21,13,64,6,1);
 new Vue({
     el: '#app',
     data: {
@@ -10,7 +10,8 @@ new Vue({
         minPlayerDamage: 3,
         maxMonsterDamage: 13,
         minMonsterDamage: 4,
-        combatLog: []
+        combatLog: [],
+        message:"Click to start a new game"
     },
     methods: {
         startGame: function(){
@@ -18,6 +19,7 @@ new Vue({
             this.monsterHealth=100;
             this.playerHealth=100;
             this.combatLog=[];
+            this.message="Choose an action";
             monster.startAnimation('walk_left');
             player.startAnimation('walk_right');
         },
@@ -79,22 +81,17 @@ new Vue({
         },
         checkWin: function(){
             if(this.playerHealth <= 0){
-                if(confirm('You died... Play a new game?')){
-                    this.startGame();
-                }
-                else{
-                    this.gameIsRunning=false;
-                    
-                }
+                player.startAnimation('fall');
+                monster.startAnimation('idle');
+                this.message="The monster has killed you... Better luck next time.";
+                this.gameIsRunning=false;
                 return true;
             }
             else if(this.monsterHealth <= 0){
-                if(confirm('You killed the monster! Play a new game?')){
-                    this.startGame();
-                }
-                else{
-                    this.gameIsRunning=false;
-                }
+                monster.startAnimation('fall');
+                player.startAnimation('idle');
+                this.message="You are victorious!";
+                this.gameIsRunning=false;
                 return true;
             }
             return false;
